@@ -50,3 +50,35 @@ formTarea.addEventListener("submit", function(e){
   aplicarFiltros();
 
 });
+
+listaTareas.addEventListener("click", function(e){
+
+  const accion = e.target.dataset.action;
+
+  if(!accion) return;
+
+  const card = e.target.closest(".card");
+
+  if(accion === "del"){
+    card.remove();
+  }
+
+  if(accion === "done"){
+    card.classList.toggle("is-done");
+  }
+
+  if(accion === "fav"){
+
+    if(card.dataset.fav === "0"){
+      card.dataset.fav = "1";
+      e.target.textContent = "★";
+    }else{
+      card.dataset.fav = "0";
+      e.target.textContent = "☆";
+    }
+
+  }
+
+  aplicarFiltros();
+
+});
